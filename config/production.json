@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://kris:kris@cluster0.ygcmm.mongodb.net/poetrydb?retryWrites=true&w=majority",
+  "jwtSecret": "topsecret"
+}
