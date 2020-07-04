@@ -10,10 +10,12 @@ const Messages = ({ getMessages, message: { messages } }) => {
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Messages</h1>
-      <p className="lead">
-        Work in Progress ...
-      </p>
+      <div className='page-not-found'>
+        <h1 className="large text-primary">Messages</h1>
+        <p className="lead">
+            Work in Progress ...
+        </p>
+      </div>
     </Fragment>
   );
 };

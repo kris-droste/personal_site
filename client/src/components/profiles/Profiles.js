@@ -16,10 +16,12 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         <Spinner />
       ) : (
         <Fragment>
-          <h1 className='large text-primary'>List of Admins</h1>
-          <Link to='/register' className='btn btn-primary'>
-            Add New Admin
-          </Link>
+          <div className='page-not-found'>
+            <h1 className="large text-primary">List of Admins</h1>
+            <p className="lead">
+              Work in Progress ...
+            </p>
+          </div>
         </Fragment>
       )}
     </Fragment>

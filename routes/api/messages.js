@@ -12,7 +12,7 @@ const checkObjectId = require('../../middleware/checkObjectId');
 // @ts-ignore
 router.post(
   '/',
-  [auth, [check('content', 'Text is required').not().isEmpty()]],
+  [[check('content', 'Text is required').not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     console.log('errors: ', errors);

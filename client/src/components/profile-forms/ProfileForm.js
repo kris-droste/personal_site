@@ -5,10 +5,12 @@ import { createProfile, getCurrentProfile } from '../../actions/profile';
 
 const ProfileForm = () =>
   (<Fragment>
-      <h1 className="large text-primary">Profile Page</h1>
+    <div className='page-not-found'>
+      <h1 className="large text-primary">Profil Page</h1>
       <p className="lead">
-        Work in Progress ...
+          Work in Progress ...
       </p>
+    </div>
     </Fragment>
   );
 

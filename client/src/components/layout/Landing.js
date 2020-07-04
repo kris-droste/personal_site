@@ -26,7 +26,7 @@ const Landing = ({ isAuthenticated }) => {
           </div>
           <div className='landing-text'>
             <br></br>
-            <p className=''>
+            <p>
               Kristian Droste is an emerging poet and author seeking publication for his debut collection of poetry, Abstract americana. He is currently at work on his fiction debut, a bardic novella, which sheds a historically justified yet ironic light on the ferocity with which U.S. academic institutions have implemented Title IX policies in the past decade. The story takes its inspiration from classical epic poems, such as Ovid’s Metamorphoses, and is in turns sympathetic and satirical. At once, it addresses the failure of American society to protect all of its citizens equally and critiques a culture that rewards distortion of the truth.
             </p>
             <p className=''>

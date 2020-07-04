@@ -10,10 +10,12 @@ const Poems = ({ getPoems, poem: { poems } }) => {
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Poems</h1>
-      <p className="lead">
-        Work in Progress ...
-      </p>
+      <div className='page-not-found'>
+        <h1 className="large text-primary">Poems</h1>
+        <p className="lead">
+            Work in Progress ...
+        </p>
+      </div>
     </Fragment>
   );
 };

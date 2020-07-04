@@ -11,11 +11,10 @@ connectDB();
 app.use(express.json());
 
 // Define Routes
-app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/profiles', require('./routes/api/profile'));
-app.use('/api/messages', require('./routes/api/message'));
-app.use('/api/poems', require('./routes/api/poem'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/poems', require('./routes/api/poems'));
+app.use('/api/messages', require('./routes/api/messages'));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
@@ -27,6 +26,6 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
