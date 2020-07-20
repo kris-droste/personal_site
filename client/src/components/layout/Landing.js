@@ -29,11 +29,10 @@ const Landing = ({ isAuthenticated }) => {
             <p>
               Kristian Droste is an emerging poet and author seeking publication for his debut collection of poetry, Abstract americana. He is currently at work on his fiction debut, a bardic novella, which sheds a historically justified yet ironic light on the ferocity with which U.S. academic institutions have implemented Title IX policies in the past decade. The story takes its inspiration from classical epic poems, such as Ovid’s Metamorphoses, and is in turns sympathetic and satirical. At once, it addresses the failure of American society to protect all of its citizens equally and critiques a culture that rewards distortion of the truth.
             </p>
-            <p className=''>
+            <p>
               Droste has taught literature, creative writing, and ethics at the primary, secondary, and post-secondary levels. In addition, he has directed the wilderness program at an independent school in New Hampshire. He is a native of New England but has found home across the United States, from its interior wildernesses to its most volatile borderlands. Kristian holds a degree in economics from a tiny college in the Pacific Northwest.
             </p>
-            <p className=''>
-
+            <p>
             </p>
           </div>
         </div>
