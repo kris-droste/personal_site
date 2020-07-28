@@ -14,7 +14,7 @@ const Message = ({ getMessage, message: { message, loading }, match }) => {
     <Spinner />
   ) : (
     <Fragment>
-      <Link to="/messages" className="btn btn-secondary">
+      <Link to="/messages" className="btn btn-dark">
         Back To All Messages
       </Link>
       <MessageItem message={message} showActions={true} />
