@@ -1,16 +1,19 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
-const Register = ({ setAlert, register }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     password2: ''
   });
+
+  const history = useHistory();
 
   const { name, email, password, password2 } = formData;
 
@@ -24,61 +27,57 @@ const Register = ({ setAlert, register }) => {
     } else {
       register({ name, email, password });
     }
+    history.push("/");
   };
 
-  // if (isAuthenticated) {
-  //   return <Redirect to="/dashboard" />;
-  // }
+  if (!isAuthenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Admin Users</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Add New Admin User
-      </p>
-      <form className="form" onSubmit={onSubmit}>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Name"
-            name="name"
-            value={name}
-            onChange={onChange}
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="email"
-            placeholder="Email Address"
-            name="email"
-            value={email}
-            onChange={onChange}
-          />
-          <small className="form-text">
-            This site uses Gravatar so if you want a profile image, use a
-            Gravatar email
-          </small>
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={password}
-            onChange={onChange}
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            name="password2"
-            value={password2}
-            onChange={onChange}
-          />
-        </div>
-        <input type="submit" className="btn btn-primary" value="Register" />
-      </form>
+      <div className="slenderDiv">
+        <h1 className='page-header'>Add New Admin User</h1>
+        <form className="form" onSubmit={onSubmit}>
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Name"
+              name="name"
+              value={name}
+              onChange={onChange}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="email"
+              placeholder="Email Address"
+              name="email"
+              value={email}
+              onChange={onChange}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={onChange}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              name="password2"
+              value={password2}
+              onChange={onChange}
+            />
+          </div>
+          <input type="submit" className="btn btn-primary btn-lg" value="Register" />
+        </form>
+      </div>
     </Fragment>
   );
 };

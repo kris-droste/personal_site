@@ -1,71 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addMessage } from '../../actions/message';
 
+
+const initialState = {
+  senderName: '',
+  senderEmail: '',
+  subject: '',
+  content: ''
+};
+
 const MessageForm = ({ addMessage }) => {
-  const [ formData, setFormData ] = useState({
-    subject: '',
-    content: '',
-    senderName: '',
-    senderPhone: '',
-    senderEmail: ''
-  });
+  const [ formData, setFormData ] = useState(initialState);
+  useEffect(() => {
+    setFormData({ ...initialState });
+  }, []);
 
-  const { subject, content, senderName, senderPhone, senderEmail } = formData;
+  const {
+    senderName,
+    senderEmail,
+    subject,
+    content
+  } = formData;
 
-  const onChange = (e) =>
-    setFormData({ ...formData, [ e.target.name ]: e.target.value });
+  const onChange = e =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    const onSubmit = async (e) => {
-      e.preventDefault();
-      addMessage(subject, content, senderName, senderPhone, senderEmail);
-    };
+  const onSubmit = e => {
+    e.preventDefault();
+    addMessage(formData);
+    window.location.href = '/';
+  };
 
   return (
-    <div className='post-form'>
-      <div className='bg-primary p'>
-        <h3>Say Something...</h3>
-      </div>
+    <div className='avDiv'>
+      <h1 className='page-header'>Compose Message</h1>
       <form
-        className='form my-1' onSubmit={onSubmit}>
-        <input
-          type="text"
-          placeholder="Subject of Message"
-          name="subject"
-          value={subject}
-          onChange={onChange}
-        />
-        <input
-          type="text"
-          placeholder="Name"
-          name="senderName"
-          value={senderName}
-          onChange={onChange}
-        />
-        <input
-          type="text"
-          placeholder="Phone"
-          name="senderPhone"
-          value={senderPhone}
-          onChange={onChange}
-        />
-        <input
-          type="text"
-          placeholder="Email"
-          name="senderEmail"
-          value={senderEmail}
-          onChange={onChange}
-        />
-        <textarea
-          name='content'
-          cols='30'
-          rows='5'
-          placeholder='Send a message'
-          value={content}
-          onChange={onChange}
-          required
-        />
+        className='form my-1'
+        onSubmit={onSubmit}
+      >
+        <div className='form-group'>
+          <label htmlFor='senderName'>Your Name: </label>
+          <input
+            type='text'
+            placeholder='John Doe'
+            name='senderName'
+            value={senderName}
+            onChange={onChange}
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='senderEmail'>Your Email: </label>
+          <input
+            type='text'
+            placeholder='john@gmail.com'
+            name='senderEmail'
+            value={senderEmail}
+            onChange={onChange}
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='subject'>Subject: </label>
+          <input
+            type='text'
+            placeholder='Hello'
+            name='subject'
+            value={subject}
+            onChange={onChange}
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='content'>Message: </label>
+          <textarea
+            name='content'
+            cols='30'
+            rows='20'
+            placeholder='Craft your message'
+            value={content}
+            onChange={onChange}
+            required
+          />
+        </div>
         <input type='submit' className='btn btn-dark my-1' value='Submit' />
       </form>
     </div>

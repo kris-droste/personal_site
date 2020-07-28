@@ -1,9 +1,8 @@
 import React, { Fragment, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
-import MessageItem from '../messages/MessageItem';
+import MessageItem from './MessageItem';
 import { getMessage } from '../../actions/message';
 
 const Message = ({ getMessage, message: { message, loading }, match }) => {
@@ -15,17 +14,12 @@ const Message = ({ getMessage, message: { message, loading }, match }) => {
     <Spinner />
   ) : (
     <Fragment>
-      <Link to="/messages" className="btn">
-        Back To Messages
+      <Link to="/messages" className="btn btn-secondary">
+        Back To All Messages
       </Link>
-      <MessageItem message={message} showActions={false} />
+      <MessageItem message={message} showActions={true} />
     </Fragment>
   );
-};
-
-Message.propTypes = {
-  getMessage: PropTypes.func.isRequired,
-  message: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({

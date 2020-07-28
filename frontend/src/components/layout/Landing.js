@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { getParagraphs } from '../../actions/paragraph';
 
-const Landing = ({ isAuthenticated }) => {
+const Landing = ({ isAuthenticated, getParagraphs, paragraph: { paragraphs } }) => {
+  useEffect(() => {
+    getParagraphs();
+  }, [ getParagraphs ]);
+
   if (isAuthenticated) {
     return <Redirect to='/dashboard' />;
   }
@@ -16,8 +21,8 @@ const Landing = ({ isAuthenticated }) => {
           <p className='lead'>
             Writer. Artist. Educator.
           </p>
-          <div className='buttons'>
-            <Link to='/works' className='btn btn-primary'>
+          <div className=''>
+            <Link to='/publicWorks' className='btn btn-primary'>
               Other Works
             </Link>
             <Link to='/todo' className='btn btn-light'>
@@ -26,14 +31,11 @@ const Landing = ({ isAuthenticated }) => {
           </div>
           <div className='landing-text'>
             <br></br>
-            <p>
-              Kristian Droste is an emerging poet and author seeking publication for his debut collection of poetry, Abstract americana. He is currently at work on his fiction debut, a bardic novella, which sheds a historically justified yet ironic light on the ferocity with which U.S. academic institutions have implemented Title IX policies in the past decade. The story takes its inspiration from classical epic poems, such as Ovid’s Metamorphoses, and is in turns sympathetic and satirical. At once, it addresses the failure of American society to protect all of its citizens equally and critiques a culture that rewards distortion of the truth.
-            </p>
-            <p>
-              Droste has taught literature, creative writing, and ethics at the primary, secondary, and post-secondary levels. In addition, he has directed the wilderness program at an independent school in New Hampshire. He is a native of New England but has found home across the United States, from its interior wildernesses to its most volatile borderlands. Kristian holds a degree in economics from a tiny college in the Pacific Northwest.
-            </p>
-            <p>
-            </p>
+            <div className="infos">
+            {paragraphs.sort((a, b) => (a.priority > b.priority) ? 1 : -1).map(p => (
+              <p key={p._id}>{p.content}</p>
+            ))}
+          </div>
           </div>
         </div>
       </div>
@@ -42,11 +44,14 @@ const Landing = ({ isAuthenticated }) => {
 };
 
 Landing.propTypes = {
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
+  getParagraphs: PropTypes.func.isRequired,
+  paragraph: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  paragraph: state.paragraph
 });
 
-export default connect(mapStateToProps)(Landing);
+export default connect(mapStateToProps, { getParagraphs })(Landing);

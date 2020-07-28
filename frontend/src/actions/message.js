@@ -5,8 +5,9 @@ import {
   MESSAGE_ERROR,
   DELETE_MESSAGE,
   ADD_MESSAGE,
-  GET_MESSAGE,
+  GET_MESSAGE
 } from './types';
+
 
 // Get messages
 export const getMessages = () => async dispatch => {
@@ -24,7 +25,6 @@ export const getMessages = () => async dispatch => {
     });
   }
 };
-
 
 // Delete message
 export const deleteMessage = id => async dispatch => {

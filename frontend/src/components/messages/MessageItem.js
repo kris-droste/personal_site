@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { deleteMessage } from '../../actions/message';
@@ -7,28 +8,33 @@ import { deleteMessage } from '../../actions/message';
 const MessageItem = ({
   deleteMessage,
   auth,
-  message: { _id, subject, message, user, date, },
+  message: { _id, subject, senderName, senderEmail, content, date },
   showActions
 }) => (
-  <div className='post bg-white p-1 my-1'>
-    <div>
-      <p className='my-1'>{subject}</p>
-      <p className='my-1'>{message}</p>
-      <p className='post-date'>
-        Messageed on <Moment format='YYYY/MM/DD'>{date}</Moment>
-      </p>
-
+  <div className='message bg-white p-1 my-1'>
+      <div>
+        {!showActions && (
+          <Link to={`/messages/${_id}`}>
+            <button className='btn btn-success'>
+              Read Message
+            </button>
+          </Link>
+        )}
+        <button
+          onClick={() => deleteMessage(_id)}
+          className='btn btn-danger'
+        >
+          Delete Message
+        </button>
+    </div>
+      <div>
+      <p className='my-1'>Subject: {subject}</p>
+      <p className='my-1'>Sender: {senderName}</p>
+      <p className='my-1'>Sender's Email: {senderEmail}</p>
+      <p className=''>Date Sent: <Moment format='YYYY/MM/DD'>{date}</Moment></p>
       {showActions && (
         <Fragment>
-          {!auth.loading && user === auth.user._id && (
-            <button
-              onClick={() => deleteMessage(_id)}
-              type='button'
-              className='btn btn-danger'
-            >
-              <i className='fas fa-times' />
-            </button>
-          )}
+          <p>{content}</p>
         </Fragment>
       )}
     </div>
@@ -36,7 +42,7 @@ const MessageItem = ({
 );
 
 MessageItem.defaultProps = {
-  showActions: true
+  showActions: false
 };
 
 MessageItem.propTypes = {

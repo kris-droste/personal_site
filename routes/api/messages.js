@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+// const jwt = require('jsonwebtoken');
+// const config = require('config');
 const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 
@@ -7,35 +9,40 @@ const Message = require('../../models/Message');
 const checkObjectId = require('../../middleware/checkObjectId');
 
 // @route    POST api/messages
-// @desc     Create a message
-// @access   Private
-// @ts-ignore
+// @desc     Send a message
+// @access   Public
 router.post(
   '/',
-  [[check('content', 'Text is required').not().isEmpty()]],
+  [
+    check('senderName', 'Your name is required').not().isEmpty(),
+    check('senderEmail', 'Please include a valid email').isEmail(),
+    check('subject', 'Message subject is required').not().isEmpty(),
+    check('content', 'Message content is required').not().isEmpty(),
+    check(
+      'content',
+      'Please enter a message with at least 10 characters'
+    ).isLength({ min: 10 })
+  ],
   async (req, res) => {
     const errors = validationResult(req);
-    console.log('errors: ', errors);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
+    const { senderName, senderEmail, subject, content } = req.body;
+
     try {
-      const newMessage = new Message({
-        subject: req.body.subject,
-        content: req.body.content,
-        senderName: req.body.senderName,
-        senderPhone: req.body.senderPhone,
-        senderEmail: req.body.senderEmail,
+      const message = new Message({
+        senderName,
+        senderEmail,
+        subject,
+        content
       });
-      console.log('newMessage: ', newMessage);
 
-      const message = await newMessage.save();
-
-      res.json(message);
+      await message.save();
     } catch (err) {
       console.error(err.message);
-      res.status(500).send('Server Error');
+      res.status(500).send('Server error');
     }
   }
 );
@@ -61,7 +68,7 @@ router.get('/:id', [auth, checkObjectId('id')], async (req, res) => {
     const message = await Message.findById(req.params.id);
 
     if (!message) {
-      return res.status(404).json({ msg: 'Message not found' });
+      return res.status(404).json({ msg: 'Message not found' })
     }
 
     res.json(message);
@@ -71,6 +78,7 @@ router.get('/:id', [auth, checkObjectId('id')], async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
 
 // @route    DELETE api/messages/:id
 // @desc     Delete a message
@@ -84,7 +92,6 @@ router.delete('/:id', [auth, checkObjectId('id')], async (req, res) => {
     }
 
     await message.remove();
-
     res.json({ msg: 'Message removed' });
   } catch (err) {
     console.error(err.message);
