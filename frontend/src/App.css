@@ -193,15 +193,6 @@ img {
   outline: none;
 }
 
-.badge {
-  font-size: 0.8rem;
-  padding: 0.1rem;
-  text-align: center;
-  margin: 0.3rem;
-  background: var(--light-color);
-  color: #333;
-}
-
 .alert {
   padding: 0.8rem;
   margin: 1rem 0;
@@ -212,16 +203,14 @@ img {
 
 .btn-primary,
 .bg-primary,
-.badge-primary,
 .alert-primary {
   background: var(--primary-color);
   color: #fff;
   margin: 0.25em;
+  border-radius: 1em;
 }
 
 .btn-light,
-.bg-light,
-.badge-light,
 .alert-light {
   background: var(--light-color);
   color: #333;
@@ -229,7 +218,6 @@ img {
 
 .btn-dark,
 .bg-dark,
-.badge-dark,
 .alert-dark {
   background: var(--dark-color);
   color: #fff;
@@ -242,7 +230,6 @@ img {
 
 .btn-danger,
 .bg-danger,
-.badge-danger,
 .alert-danger {
   background: var(--danger-color);
   color: #fff;
@@ -250,7 +237,6 @@ img {
 
 .btn-success,
 .bg-success,
-.badge-success,
 .alert-success {
   background: var(--success-color);
   color: #fff;
@@ -258,7 +244,6 @@ img {
 
 .btn-white,
 .bg-white,
-.badge-white,
 .alert-white {
   background: #fff;
   color: #333;
@@ -267,11 +252,6 @@ img {
 
 .btn:hover {
   opacity: 0.8;
-}
-
-.bg-light,
-.badge-light {
-  border: #ccc solid 1px;
 }
 
 .round-img {
@@ -388,41 +368,6 @@ button {
 .page-not-found {
   text-align: center;
   margin: 10em auto;
-}
-
-/* Posts Page */
-.post-form .post-form-header {
-  background: var(--primary-color);
-  padding: 0.5rem;
-}
-
-.post {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-gap: 2rem;
-  align-items: center;
-}
-
-.post > div:first-child {
-  text-align: center;
-}
-
-.post img {
-  width: 100px;
-}
-
-.post .comment-count {
-  background: var(--light-color);
-  color: var(--primary-color);
-  padding: 0.1rem 0.2rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
-}
-
-.post .post-date {
-  color: #aaa;
-  font-size: 0.8rem;
-  margin-bottom: 0.5rem;
 }
 
 /* Mobile Styles */
