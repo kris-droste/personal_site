@@ -37,7 +37,7 @@ const MessageForm = ({ addMessage }) => {
     <div className='avDiv'>
       <h1 className='page-header'>Compose Message</h1>
       <form
-        className='form my-1'
+        className='form'
         onSubmit={onSubmit}
       >
         <div className='form-group'>
@@ -82,7 +82,7 @@ const MessageForm = ({ addMessage }) => {
             required
           />
         </div>
-        <input type='submit' className='btn btn-dark my-1' value='Submit' />
+        <input type='submit' className='btn btn-dark' value='Submit' />
       </form>
     </div>
   );

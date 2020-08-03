@@ -11,7 +11,7 @@ const ParagraphItem = ({
   paragraph: { _id, priority, content, date },
   showActions
 }) => (
-  <div className='message bg-white p-1 my-1'>
+  <div className='container-box bg-white'>
     <div>
       {!showActions && (
         <Link to={`/paragraphs/${_id}`}>
@@ -32,12 +32,12 @@ const ParagraphItem = ({
         Delete Message
       </button>
     </div>
-      <div>
-      <p className='my-1'>paragraph #: {priority}</p>
-      <p className=''>Date Written: <Moment format='YYYY/MM/DD'>{date}</Moment></p>
+    <div className='item-div'>
+      <p>Paragraph #: {priority}</p>
+      <p>Date Written: <Moment format='YYYY/MM/DD'>{date}</Moment></p>
       {!showActions && (
         <Fragment>
-          <p className='my-1'>Partial Text: {content.substring(0, 50) + ' ...'}</p>
+          <p>Partial Text: {content.substring(0, 50) + ' ...'}</p>
         </Fragment>
       )}
       {showActions && (

@@ -11,7 +11,7 @@ const WorkItem = ({
   work: { _id, url, displayedText, date },
   showActions
 }) => (
-  <div className='message bg-white p-1 my-1'>
+  <div className='container-box bg-white'>
     <div>
       <Link to={`works/update/${_id}`}>
         <button className='btn btn-dark'>
@@ -25,9 +25,9 @@ const WorkItem = ({
         Delete Work
       </button>
     </div>
-    <div>
-      <p className=''>Date Added: <Moment format='YYYY/MM/DD'>{date}</Moment></p>
-      <p className='my-1'>URL: {url}</p>
+    <div className='item-div'>
+      <p>Date Added: <Moment format='YYYY/MM/DD'>{date}</Moment></p>
+      <p>URL: {url}</p>
       <p>Displayed Text: {displayedText}</p>
     </div>
   </div>

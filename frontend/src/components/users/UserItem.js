@@ -10,7 +10,7 @@ const UserItem = ({
   user: { _id, name, email },
   showActions
 }) => (
-  <div className='message bg-white p-1 my-1'>
+  <div className='container-box bg-white'>
       <div>
         {!showActions && (
           <Link to={`/users/update/${_id}`}>
@@ -25,10 +25,10 @@ const UserItem = ({
         Delete User
       </button>
     </div>
-    <div>
-      <p className='my-1'>User's Name: {name}</p>
-        <p className='my-1'>User's Email: {email}</p>
-        <p className='my-1'>User's Password: ******</p>
+    <div className='item-div'>
+      <p>User's Name: {name}</p>
+      <p>User's Email: {email}</p>
+      <p>User's Password: ******</p>
     </div>
   </div>
 );

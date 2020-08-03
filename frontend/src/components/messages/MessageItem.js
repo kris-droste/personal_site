@@ -11,7 +11,7 @@ const MessageItem = ({
   message: { _id, subject, senderName, senderEmail, content, date },
   showActions
 }) => (
-  <div className='message bg-white p-1 my-1'>
+  <div className='container-box bg-white'>
       <div>
         {!showActions && (
           <Link to={`/messages/${_id}`}>
@@ -27,11 +27,11 @@ const MessageItem = ({
           Delete Message
         </button>
     </div>
-      <div>
-      <p className='my-1'>Subject: {subject}</p>
-      <p className='my-1'>Sender: {senderName}</p>
-      <p className='my-1'>Sender's Email: {senderEmail}</p>
-      <p className=''>Date Sent: <Moment format='YYYY/MM/DD'>{date}</Moment></p>
+    <div className='item-div'>
+      <p>Subject: {subject}</p>
+      <p>Sender: {senderName}</p>
+      <p>Sender's Email: {senderEmail}</p>
+      <p>Date Sent: <Moment format='YYYY/MM/DD'>{date}</Moment></p>
       {showActions && (
         <Fragment>
           <p>{content}</p>

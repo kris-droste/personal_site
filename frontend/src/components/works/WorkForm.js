@@ -38,7 +38,7 @@ const WorkForm = ({ addWork }) => {
         </Link>
       </div>
       <form
-        className='form my-1'
+        className='form'
         onSubmit={onSubmit}
       >
         <div className='form-group'>
@@ -57,7 +57,7 @@ const WorkForm = ({ addWork }) => {
             onChange={onChange}
           />
         </div>
-        <input type='submit' className='btn btn-success my-1' value='Submit' />
+        <input type='submit' className='btn btn-success' value='Submit' />
       </form>
     </div>
   );
